@@ -82,7 +82,7 @@ unsigned char mykeyscan(void)
 {
   int  start,end;
 unsigned int key=0;
-  start=peek(0,0x41a); /* peekÄÚ´æÖĞ¶Á³öÒ»¸ö×Ö£¨16Î»£© */
+  start=peek(0,0x41a); /* peekå†…å­˜ä¸­è¯»å‡ºä¸€ä¸ªå­—ï¼ˆ16ä½ï¼‰ */
   end=peek(0,0x41c);
   if (start==end) return(0);
   else
@@ -90,7 +90,7 @@ unsigned int key=0;
     key=peek(0x40,start);
     start+=2;
     if (start==0x3e) start=0x1e;
-    poke(0x40,0x1a,start);   /*ÍùÄÚ´æÖĞĞ´ÈëÒ»¸ö×Ö£¨16Î»£©   */
+    poke(0x40,0x1a,start);   /*å¾€å†…å­˜ä¸­å†™å…¥ä¸€ä¸ªå­—ï¼ˆ16ä½ï¼‰   */
     return(key/256);
   }
 }

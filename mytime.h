@@ -1,9 +1,9 @@
 /*********************************************************/
-/*                     ÎÄ¼ş£ºmytime.h                    */
+/*                     æ–‡ä»¶ï¼šmytime.h                    */
 /*********************************************************/
 /*********************************************************/
 
-/* ÏµÍ³¿ÉÓÃ¼ÆÊ±Æ÷µÄ×î´óÊıÄ¿ */
+/* ç³»ç»Ÿå¯ç”¨è®¡æ—¶å™¨çš„æœ€å¤§æ•°ç›® */
 # define  BYTE         unsigned char
 # define  BOOL         BYTE
 # define  WORD         unsigned int
@@ -15,20 +15,20 @@
 
 
 
-/* ¼ÆÊ±Æ÷½á¹¹ */
+/* è®¡æ—¶å™¨ç»“æ„ */
 struct TM
 {
-  DWORD Interval;            /*      ¼ä¸ô       */
-  DWORD LastTimer;             /* ÉÏ´ÎÊ±¼ä·¢ÉúÊ±¼ä*/
-  BOOL  Enable;                /*      »î¶¯       */
-  BOOL  Used;                  /*      ¿ÉÓÃ       */
-  void  (*Pointer)();          /*   ÊÂ¼şÔ¶Ö¸Õë    */
+  DWORD Interval;            /*      é—´éš”       */
+  DWORD LastTimer;             /* ä¸Šæ¬¡æ—¶é—´å‘ç”Ÿæ—¶é—´*/
+  BOOL  Enable;                /*      æ´»åŠ¨       */
+  BOOL  Used;                  /*      å¯ç”¨       */
+  void  (*Pointer)();          /*   äº‹ä»¶è¿œæŒ‡é’ˆ    */
 };
 
 struct TM tmTM[MAXTIMER+1];
 int    TimerUsed=0;
 
-/* »ñÈ¡BIOS¼ÆÊıÆ÷ÊıÖµ */
+/* è·å–BIOSè®¡æ•°å™¨æ•°å€¼ */
 DWORD BiosTimer(void)
 {
   DWORD BIOSTIMER=0;
@@ -38,7 +38,7 @@ DWORD BiosTimer(void)
   return (BIOSTIMER);
 }
 
-/* Ê±¼äÊÂ¼ş£¨Ê±ÖÓÏµÍ³ºËĞÄ£© */
+/* æ—¶é—´äº‹ä»¶ï¼ˆæ—¶é’Ÿç³»ç»Ÿæ ¸å¿ƒï¼‰ */
 void kaishitimer()
 {
   int   i;
@@ -48,7 +48,7 @@ void kaishitimer()
   {
       if (tmTM[i].Used&&tmTM[i].Enable)
       {
-         TimerDiff=BiosTimer()-tmTM[i].LastTimer;/*µ±Ç°boisÊ±¼äÊıÖµÓëÉÏÒ»´Î·¢ÉúÊ±¼äÏà¼õ   */
+         TimerDiff=BiosTimer()-tmTM[i].LastTimer;/*å½“å‰boisæ—¶é—´æ•°å€¼ä¸ä¸Šä¸€æ¬¡å‘ç”Ÿæ—¶é—´ç›¸å‡   */
      if (tmTM[i].Interval<=TimerDiff)
          {
             tmTM[i].Pointer();
@@ -58,7 +58,7 @@ void kaishitimer()
   }
 }
 
-/* ´´½¨Ò»¸öÊ±ÖÓ£¨³É¹¦·µ»ØÊ±ÖÓµÄ¾ä±ú£¬·ñÔò·µ»ØNULL£© */
+/* åˆ›å»ºä¸€ä¸ªæ—¶é’Ÿï¼ˆæˆåŠŸè¿”å›æ—¶é’Ÿçš„å¥æŸ„ï¼Œå¦åˆ™è¿”å›NULLï¼‰ */
 int chuangtimer(DWORD Interval,void (*Pointer)())
 {
   int i=0;
@@ -76,7 +76,7 @@ int chuangtimer(DWORD Interval,void (*Pointer)())
   return i;
 }
 
-/* É¾³ıÒ»¸öÊ±ÖÓ */
+/* åˆ é™¤ä¸€ä¸ªæ—¶é’Ÿ */
 void shantimer(int *TimerID)
 {
   if (tmTM[*TimerID].Used)
@@ -87,7 +87,7 @@ void shantimer(int *TimerID)
   *TimerID=0;
 }
 
-/* É¾³ıËùÓĞÊ±ÖÓ */
+/* åˆ é™¤æ‰€æœ‰æ—¶é’Ÿ */
 void qingtimer()
 {
   int i;
